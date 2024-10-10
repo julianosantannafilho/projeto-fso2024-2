@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  banco:
+    image: postgres:latest
+    container_name: backend-db
+    restart: on-failure
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    networks: ['projeto-network']
+
+  backend:
+    container_name: backend
+    restart: on-failure
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - banco
+    env_file:
+      - .env
+    environment:
+      - SPRING_DATASOURCE_URL=${POSTGRES_URL}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8080:8080"
+    networks: ['projeto-network']
+
+networks: {projeto-network: {}}
