@@ -1,8 +1,7 @@
-package com.projeto.backend.model;
+package com.projeto.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Generated;
 
 import java.util.UUID;
 

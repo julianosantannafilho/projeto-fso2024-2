@@ -1,8 +1,7 @@
-package com.projeto.backend.model;
+package com.projeto.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Generated;
 
 import java.util.UUID;
 
@@ -13,19 +12,17 @@ import java.util.UUID;
 @Entity
 @Builder
 
-public class Pedidos {
+public class ItemPedido {
+
     @Id
     @Builder.Default
     private UUID id = UUID.randomUUID();
 
     @ManyToOne
     private Produto produto;
+    private long quantidade;
+    private String valor;
 
-    @ManyToOne
-    private Empresa empresa;
 
-    @ManyToOne
-    private Usuario usuario;
-
-    private long statusPedido;
 }
+

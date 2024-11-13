@@ -1,8 +1,8 @@
-package com.projeto.backend.model;
+package com.projeto.backend.entity;
 
+import com.projeto.backend.util.TipoProdutoCategorias;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Generated;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,13 +22,15 @@ public class Produto {
     private String nome;
     private long quantidade;
     private String valor;
+    private long status;
+    private List<TipoProdutoCategorias> tipoProdutoCategoria;
+    private String descricao;
+    private long notas;
 
     @ManyToOne
     private Empresa empresa;
-    private long status;
 
     @OneToMany
+    @JoinColumn(name = "comentarios")
     private Comentario comentario;
-    private String descricao;
-    private long notas;
 }

@@ -1,9 +1,7 @@
-package com.projeto.backend.model;
-
+package com.projeto.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Generated;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,19 +12,22 @@ import java.util.UUID;
 @Setter
 @Entity
 @Builder
-
-public class Usuario {
+public class Empresa {
 
     @Id
     @Builder.Default
     private UUID id = UUID.randomUUID();
     private String nome;
-    private String data_nascimento;
+    private String cnpj;
     private String email;
     private String senha;
     private int cep;
-    private int cartao_de_credito;
 
-    @ManyToOne
-    private Pedidos pedidosList;
+    @OneToMany
+    @JoinColumn(name ="pedidos")
+    private Pedido pedido;
+
+    @OneToMany
+    @JoinColumn(name = "produtos")
+    private List<Produto> produtos;
 }
