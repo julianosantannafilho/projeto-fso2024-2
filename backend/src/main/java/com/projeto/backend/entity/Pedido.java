@@ -24,8 +24,7 @@ public class Pedido {
     @ManyToOne
     private Empresa empresa;
 
-    @OneToMany
-    @JoinColumn(name = "usuario")
+    @ManyToOne
     private Usuario usuario;
 
     @OneToMany

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/user")
 public class UsuarioController {
@@ -16,7 +18,9 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @PostMapping("/create")
-    public Usuario createUser(@RequestBody Usuario usuario){
-        usuarioService.
+    public Usuario createUser(@RequestBody UUID id){
+        Usuario usuario = usuarioService.findUser(id);
+
+        return usuario;
     }
 }

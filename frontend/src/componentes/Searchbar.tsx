@@ -14,25 +14,20 @@ const Searchbar = () => {
 	}
 
 	function query(e: any) {
+		e.preventDefault();
 		console.log("buscando: ", searchValue.current);
 	}
 
 	console.log(searchValue);
 	return (
-		<div className="">
+		<form className="flex flex-row items-center w-full" onSubmit={query}>
 			<Input
 				placeholder="Buscar produtos,marcas e muito mais..."
 				onChange={search}
 			/>
-			<IconButton
-				sx={{
-					height: "200px",
-				}}
-				LinkComponent={"search"}
-				onClick={query}>
-				<SearchIcon />
-			</IconButton>
-		</div>
+
+			<SearchIcon onClick={query} />
+		</form>
 	);
 };
 

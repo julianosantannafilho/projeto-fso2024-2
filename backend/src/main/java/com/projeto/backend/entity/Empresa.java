@@ -25,7 +25,7 @@ public class Empresa {
 
     @OneToMany
     @JoinColumn(name ="pedidos")
-    private Pedido pedido;
+    private List<Pedido> pedido;
 
     @OneToMany
     @JoinColumn(name = "produtos")

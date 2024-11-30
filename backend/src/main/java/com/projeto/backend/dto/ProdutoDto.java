@@ -28,5 +28,5 @@ public class ProdutoDto {
 
     private Empresa empresa;
 
-    private Comentario comentario;
+    private List<Comentario> comentario;
 }

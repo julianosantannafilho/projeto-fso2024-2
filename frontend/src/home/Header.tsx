@@ -13,14 +13,10 @@ import MenuCustom from "@/componentes/MenuCustom";
 
 const Header = () => {
 	return (
-		<div className="flex-col">
-			<div className="">
-				<Searchbar />
-				asdasd
-			</div>
-			<div className="">
-				<MenuCustom />
-			</div>
+		<div className="flex flex-row border border-red-600 border-solid">
+			<Searchbar />
+
+			<MenuCustom />
 		</div>
 	);
 };

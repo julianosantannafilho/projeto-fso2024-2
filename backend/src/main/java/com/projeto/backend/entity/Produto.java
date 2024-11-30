@@ -32,5 +32,5 @@ public class Produto {
 
     @OneToMany
     @JoinColumn(name = "comentarios")
-    private Comentario comentario;
+    private List<Comentario> comentario;
 }

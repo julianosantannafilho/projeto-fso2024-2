@@ -21,7 +21,7 @@ public class EmpresaDto {
     private String senha;
     private int cep;
 
-    private Pedido pedido;
+    private List<Pedido> pedido;
 
     private List<Produto> produtos;
 }

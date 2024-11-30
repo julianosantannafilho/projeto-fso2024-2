@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import {
 	Menubar,
 	MenubarContent,
@@ -9,62 +11,70 @@ import {
 	MenubarTrigger,
 } from "@/components/ui/menubar";
 
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuIndicator,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
+import MiniLogin from "./MiniLogin";
+import { Button, InputLabel, Menu, MenuItem } from "@mui/material";
+import { Input } from "postcss";
+
 const MenuCustom = () => {
+	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+	const login = useRef("");
+	const senha = useRef("");
+
+	console.log(login.current, senha.current);
 	return (
-		<div>
-			<Menubar>
-				<MenubarMenu>
-					<MenubarTrigger>Categorias</MenubarTrigger>
-					<MenubarContent>
-						<MenubarItem>Veículos</MenubarItem>
-						<MenubarItem>Eletrodomesticos</MenubarItem>
-						<MenubarItem>Ferramentas</MenubarItem>
-						<MenubarItem>Mais vendidos</MenubarItem>
-					</MenubarContent>
-				</MenubarMenu>
-
-				<MenubarMenu>
-					<MenubarTrigger>BOmba</MenubarTrigger>
-					<MenubarContent>
-						<MenubarItem>
-							New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-						</MenubarItem>
-						<MenubarItem>New Window</MenubarItem>
-						<MenubarSeparator />
-						<MenubarItem>Share</MenubarItem>
-						<MenubarSeparator />
-						<MenubarItem>Print</MenubarItem>
-					</MenubarContent>
-				</MenubarMenu>
-
-				<MenubarMenu>
-					<MenubarTrigger>Merda</MenubarTrigger>
-					<MenubarContent>
-						<MenubarItem>
-							New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-						</MenubarItem>
-						<MenubarItem>New Window</MenubarItem>
-						<MenubarSeparator />
-						<MenubarItem>Share</MenubarItem>
-						<MenubarSeparator />
-						<MenubarItem>Print</MenubarItem>
-					</MenubarContent>
-				</MenubarMenu>
-
-				<MenubarMenu>
-					<MenubarTrigger>File</MenubarTrigger>
-					<MenubarContent>
-						<MenubarItem>
-							New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-						</MenubarItem>
-						<MenubarItem>New Window</MenubarItem>
-						<MenubarSeparator />
-						<MenubarItem>Share</MenubarItem>
-						<MenubarSeparator />
-						<MenubarItem>Print</MenubarItem>
-					</MenubarContent>
-				</MenubarMenu>
-			</Menubar>
+		<div className="">
+			<Button
+				id="demo-positioned-button"
+				aria-controls={open ? "demo-positioned-menu" : undefined}
+				aria-haspopup="true"
+				aria-expanded={open ? "true" : undefined}
+				onClick={handleClick}>
+				Login
+			</Button>
+			<Menu
+				id="demo-positioned-menu"
+				aria-labelledby="demo-positioned-button"
+				anchorEl={anchorEl}
+				open={open}
+				onClose={handleClose}
+				anchorOrigin={{
+					vertical: "bottom",
+					horizontal: "center",
+				}}
+				// ARRUMAR ANCHOR
+				transformOrigin={{
+					vertical: "bottom",
+					horizontal: "left",
+				}}>
+				<MiniLogin />
+				{/* <MenuItem>dqwd</MenuItem> */}
+			</Menu>
 		</div>
 	);
 };
