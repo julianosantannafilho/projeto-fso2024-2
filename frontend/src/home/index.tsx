@@ -5,7 +5,7 @@ import Main from "./main/Main";
 export default function Home() {
 	return (
 		<>
-			<Header></Header>
+			{/* <Header></Header> */}
 			<Main></Main>
 		</>
 	);

@@ -1,17 +1,14 @@
 package com.projeto.backend.controller;
 
+import com.projeto.backend.dto.UsuarioDto;
 import com.projeto.backend.entity.Usuario;
 import com.projeto.backend.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/user")
 public class UsuarioController {
 
     @Autowired
@@ -22,5 +19,16 @@ public class UsuarioController {
         Usuario usuario = usuarioService.findUser(id);
 
         return usuario;
+    }
+
+    @PostMapping("/login")
+    public UUID login(@RequestBody UsuarioDto usuarioDto) throws Exception {
+        Usuario usuario = usuarioService.findUserByEmail(usuarioDto.getEmail());
+        System.out.println("bombaaaa");
+        if(usuario.getSenha().equals(usuarioDto.getSenha())){
+            return usuario.getId();
+        }else{
+            return UUID.randomUUID();
+        }
     }
 }
