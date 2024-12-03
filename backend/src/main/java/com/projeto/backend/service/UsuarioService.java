@@ -6,9 +6,9 @@ import com.projeto.backend.repository.UsuarioRepository;
 import java.util.UUID;
 
 public interface UsuarioService  {
-    Usuario findUser(UUID id);
+    Usuario findById(UUID id);
 
-    Usuario findUserByEmail(String email);
+    Usuario findByEmail(String email);
 
     Usuario save(Usuario usuario);
 

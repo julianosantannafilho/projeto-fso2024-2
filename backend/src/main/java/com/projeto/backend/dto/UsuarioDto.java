@@ -20,6 +20,7 @@ public class UsuarioDto {
     private String email;
     private String senha;
     private int cep;
+    private String cpf;
     private int cartao_de_credito;
 
     private Pedido pedidoList;

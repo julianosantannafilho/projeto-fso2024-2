@@ -23,6 +23,7 @@ public class Usuario {
     private String data_nascimento;
     private String email;
     private String senha;
+    private String cpf;
     private int cep;
     private int cartao_de_credito;
 

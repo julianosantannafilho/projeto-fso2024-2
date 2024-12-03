@@ -1,24 +1,28 @@
 "use client";
 import { Box, Button, Input, InputLabel } from "@mui/material";
+import axios from "axios";
 import Link from "next/link";
 import React, { useRef } from "react";
 
-function MiniLogin() {
-	const login = useRef("");
+function MiniLogin({ setOpen }) {
+	const email = useRef("");
 	const senha = useRef("");
 
 	async function queryLogin() {
-		const req = await fetch("http:localhost:8080/login", {
-			method: "POST",
-			body: JSON.stringify({
-				login: login.current,
-				senha: senha.current,
-			}),
-		})
+		const req = await axios
+			.post(
+				"http://localhost:8080/login",
+				{
+					email: email.current,
+					senha: senha.current,
+				},
+				{ withCredentials: true }
+			)
 			.catch((e) => console.log(e))
 			.then((res) => {
 				if (res) {
-					console.log(res.json());
+					console.log(res.data);
+					setOpen();
 				}
 			});
 	}
@@ -27,7 +31,7 @@ function MiniLogin() {
 		<Box flex={1} p={1} gap={2}>
 			<Box>
 				<InputLabel>Login</InputLabel>
-				<Input onChange={(e) => (login.current = e.target.value)} />
+				<Input onChange={(e) => (email.current = e.target.value)} />
 			</Box>
 			<Box>
 				<InputLabel>Senha</InputLabel>

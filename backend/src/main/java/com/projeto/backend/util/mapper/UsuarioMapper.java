@@ -1,8 +1,11 @@
 package com.projeto.backend.util.mapper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto.backend.dto.UsuarioDto;
 import com.projeto.backend.entity.Usuario;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UsuarioMapper {
     public Usuario usuarioDtoToEntity(UsuarioDto usuarioDto){
         return Usuario.builder().cep(usuarioDto.getCep())

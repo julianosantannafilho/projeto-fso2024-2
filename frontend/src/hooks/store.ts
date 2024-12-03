@@ -7,11 +7,15 @@ export const useStoreBomba = create((set) => ({
 	id: "",
 	setEmpresa: (empresa) =>
 		set({
-			empresa: empresa,
+			isEmpresa: empresa,
 		}),
 	setUsername: (username) =>
 		set({
 			username: username,
+		}),
+	setId: (id) =>
+		set({
+			id: id,
 		}),
 	setName: (name) =>
 		set({

@@ -1,6 +1,8 @@
 "use client";
 
+import { useStoreBomba } from "@/hooks/store";
 import { Box, Button, Input, InputLabel } from "@mui/material";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 
@@ -9,25 +11,38 @@ function Page() {
 	const email = useRef("");
 	const senha = useRef("");
 	const senha2 = useRef("");
+	const cep = useRef("");
+	const cpf = useRef("");
+	const data_nascimento = useRef("");
+
+	const userId = useStoreBomba((state) => state.setId);
 
 	const router = useRouter();
 	async function registerQuery() {
-		const req = await fetch("http:localhost:8080/login", {
-			method: "POST",
-			body: JSON.stringify({
-				nome: nome.current,
-				email: email.current,
-				senha: senha.current,
-				senha2: senha.current,
-			}),
-		})
-			.catch((e) => console.log(e))
+		const req = await axios
+			.post(
+				"http://localhost:8080/registrar",
+				{
+					nome: nome.current,
+					email: email.current,
+					senha: senha.current,
+					cep: cep.current,
+					cpf: cpf.current,
+					data_nascimento: data_nascimento.current,
+				},
+				{ withCredentials: true }
+			)
 			.then((res) => {
-				if (res) {
-					console.log(res.json());
+				if (res.data) {
+					userId(res.data.id);
 				}
 
 				router.push("/");
+			})
+			.catch((e) => {
+				if (e.status === 409) {
+					console.log("erro", e.message);
+				}
 			});
 	}
 
@@ -57,6 +72,22 @@ function Page() {
 				<Box>
 					<InputLabel>Nome</InputLabel>
 					<Input onChange={(e) => (nome.current = e.target.value)}></Input>
+				</Box>
+				<Box>
+					<InputLabel>Cpf</InputLabel>
+					<Input onChange={(e) => (cpf.current = e.target.value)}></Input>
+				</Box>
+				<Box>
+					<InputLabel>Data de nascimento</InputLabel>
+
+					<Input
+						onChange={(e) =>
+							(data_nascimento.current = e.target.value)
+						}></Input>
+				</Box>
+				<Box>
+					<InputLabel>Cep</InputLabel>
+					<Input onChange={(e) => (cep.current = e.target.value)}></Input>
 				</Box>
 				<Box>
 					<InputLabel>Email</InputLabel>

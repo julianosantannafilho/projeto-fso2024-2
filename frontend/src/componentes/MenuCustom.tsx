@@ -57,7 +57,7 @@ const MenuCustom = ({ children }) => {
 							vertical: "bottom",
 							horizontal: "left",
 						}}>
-						<MiniLogin />
+						<MiniLogin setOpen={handleClose} />
 
 						{children}
 					</Menu>

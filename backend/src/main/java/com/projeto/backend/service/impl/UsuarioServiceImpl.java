@@ -1,5 +1,6 @@
 package com.projeto.backend.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto.backend.entity.Usuario;
 import com.projeto.backend.repository.UsuarioRepository;
 import com.projeto.backend.service.UsuarioService;
@@ -15,13 +16,14 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-
-    public Usuario findUser(UUID id) {
+    public Usuario findById(UUID id) {
         return usuarioRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public Usuario findUserByEmail(String email) {
+    public Usuario findByEmail(String email) {
+
+
         return usuarioRepository.findByEmail(email);
     }
 

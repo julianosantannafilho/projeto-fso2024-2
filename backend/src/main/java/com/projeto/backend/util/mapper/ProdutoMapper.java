@@ -2,7 +2,9 @@ package com.projeto.backend.util.mapper;
 
 import com.projeto.backend.dto.ProdutoDto;
 import com.projeto.backend.entity.Produto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProdutoMapper {
     public Produto produtoDtoToEntity(ProdutoDto produtoDto){
         return Produto.builder().nome(produtoDto.getNome())
