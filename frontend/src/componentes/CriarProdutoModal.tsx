@@ -33,7 +33,7 @@ function CriarProdutoModal() {
 	const tipoProduto = useRef("");
 	const status = useRef("");
 
-	const idEmpresa = useStoreBomba((state) => state.id);
+	const idEmpresa = useStoreBomba((state) => state.idEmpresa);
 	const [open, setOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
