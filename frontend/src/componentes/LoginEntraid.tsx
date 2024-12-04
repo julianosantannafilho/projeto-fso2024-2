@@ -66,11 +66,9 @@ const MainContent = () => {
 const AppEntra = ({ instance, children }) => {
 	return (
 		<MsalProvider instance={instance}>
-			<Header>
-				<MenuCustom>
-					<MainContent></MainContent>
-				</MenuCustom>
-			</Header>
+			<MenuCustom>
+				<MainContent></MainContent>
+			</MenuCustom>
 			{children}
 		</MsalProvider>
 	);

@@ -10,6 +10,7 @@ import { createRoot } from "react-dom/client";
 import { msalConfig } from "../lib/auth";
 import { PublicClientApplication, EventType } from "@azure/msal-browser";
 import AppEntra from "@/componentes/LoginEntraid";
+import { Box } from "@mui/material";
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
@@ -39,7 +40,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className="w-full h-full">
+			<body className="">
 				<AppEntra instance={msalInstance}>{children}</AppEntra>
 			</body>
 		</html>

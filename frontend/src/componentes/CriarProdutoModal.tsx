@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import React, { useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
+import { useStore } from "zustand";
 const style = {
 	position: "absolute",
 	top: "50%",
@@ -26,29 +28,46 @@ const style = {
 	px: 4,
 	pb: 4,
 };
-function CriarProdutoModal() {
+function CriarProdutoModal({ open, setOpen }) {
 	const nome = useRef("");
 	const quantidade = useRef("");
 	const valor = useRef("");
 	const tipoProduto = useRef("");
 	const status = useRef("");
-
+	const descricao = useRef("");
+	const imagem = useRef("");
 	const idEmpresa = useStoreBomba((state) => state.idEmpresa);
-	const [open, setOpen] = useState(false);
+	const setEmpresa = useStoreBomba((state) => state.setIdEmpresa);
 	const [isLoading, setIsLoading] = useState(false);
+	console.log("idempresa", idEmpresa);
 
 	async function handleCreateProduto() {
+		await axios
+			.get(`http://localhost:8080/empresa/${idEmpresa.id}/get`, {
+				withCredentials: true,
+			})
+			.then((res) => {
+				console.log(res.data);
+				setEmpresa(res.data);
+			})
+			.catch((e) => console.log(e));
 		setIsLoading(!isLoading);
-		await fetch(`http://localhost:8080/produtos/${idEmpresa}/create`, {
-			method: "POST",
-			body: JSON.stringify({
-				nome,
-				quantidade,
-				valor,
-				tipoProduto,
-				status,
-			}),
-		})
+		console.log("idEmpresa", idEmpresa);
+		await axios
+			.post(
+				`http://localhost:8080/produto/create`,
+				{
+					empresa: idEmpresa,
+					nome: nome.current,
+					descricao: descricao.current,
+					imagem: imagem.current,
+					quantidade: quantidade.current,
+					valor: valor.current,
+					tipoProdutoCategoria: tipoProduto.current,
+					status: status.current,
+				},
+				{ withCredentials: true }
+			)
 			.catch((e) => console.error(e))
 			.then((res) => {
 				if (res && res.status === 200) {
@@ -109,6 +128,18 @@ function CriarProdutoModal() {
 									onChange={(e) =>
 										(tipoProduto.current = e.target.value)
 									}></Input>
+							</Box>
+							<Box>
+								<InputLabel>Descrição do produto</InputLabel>
+								<Input
+									onChange={(e) =>
+										(descricao.current = e.target.value)
+									}></Input>
+							</Box>
+							<Box>
+								<InputLabel>URL da imagem</InputLabel>
+								<Input
+									onChange={(e) => (imagem.current = e.target.value)}></Input>
 							</Box>
 							<Button onClick={handleCreateProduto}>Criar</Button>
 						</Box>

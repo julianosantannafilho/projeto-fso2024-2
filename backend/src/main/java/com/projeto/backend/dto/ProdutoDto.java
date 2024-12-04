@@ -21,10 +21,11 @@ public class ProdutoDto {
     private String nome;
     private long quantidade;
     private String valor;
-    private long status;
-    private List<TipoProdutoCategorias> tipoProdutoCategoria;
+    private String status;
+    private String tipoProdutoCategoria;
     private String descricao;
     private long notas;
+    private String imagem;
 
     private Empresa empresa;
 

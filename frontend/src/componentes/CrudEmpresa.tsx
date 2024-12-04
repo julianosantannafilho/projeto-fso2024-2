@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import Produtos from "./Produtos";
 import CriarProdutoModal from "./CriarProdutoModal";
 import Pedidos from "./Pedidos";
+import axios from "axios";
+import { useStoreBomba } from "@/hooks/store";
 
 interface TabPanelProps {
 	children?: React.ReactNode;
@@ -36,11 +38,24 @@ function a11yProps(index: number) {
 
 export default function CrudEmpresa() {
 	const [value, setValue] = React.useState(0);
-
+	const [data, setData] = React.useState();
+	const [openModal, setOpenModal] = React.useState(false);
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
-
+	const empresaId = useStoreBomba((state) => state.idEmpresa);
+	async function fetchRowData() {
+		await axios
+			.get(`http://localhost:8080/produto/${empresaId.id}/get`, {
+				withCredentials: true,
+			})
+			.then((res) => {
+				setData(res.data);
+			});
+	}
+	React.useEffect(() => {
+		fetchRowData();
+	}, [openModal]);
 	return (
 		<Box sx={{ width: "100%" }}>
 			<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -53,8 +68,8 @@ export default function CrudEmpresa() {
 				</Tabs>
 			</Box>
 			<CustomTabPanel value={value} index={0}>
-				<CriarProdutoModal />
-				<Produtos />
+				<CriarProdutoModal open={openModal} setOpen={setOpenModal} />
+				<Produtos data={data} fetchProduto={fetchRowData} />
 			</CustomTabPanel>
 			<CustomTabPanel value={value} index={1}>
 				<Pedidos />

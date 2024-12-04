@@ -3,7 +3,14 @@
 import React, { useRef } from "react";
 
 import MiniLogin from "./MiniLogin";
-import { Button, InputLabel, Menu, MenuItem } from "@mui/material";
+import {
+	Box,
+	Button,
+	InputLabel,
+	Menu,
+	MenuItem,
+	Typography,
+} from "@mui/material";
 import { Input } from "postcss";
 import { useStore } from "zustand";
 import Perfil from "./Perfil";
@@ -26,7 +33,20 @@ const MenuCustom = ({ children }) => {
 
 	console.log(login.current, senha.current);
 	return (
-		<div className="">
+		<Box display={"flex"} justifyContent={"end"} height={"10vh"}>
+			<Box
+				display={"flex"}
+				justifyContent={"start"}
+				justifyItems={"center"}
+				alignContent={"start"}
+				width={"80vw"}>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Logo_Lojas_Havan.jpg" />
+			</Box>
+			<Box display={"flex"} alignItems={"center"}>
+				<Typography variant="h1">Havan</Typography>
+			</Box>
+			<Box width={"33vw"}></Box>
+			<Box width={"33vw"}></Box>
 			{name && username ? (
 				<Perfil />
 			) : (
@@ -63,7 +83,7 @@ const MenuCustom = ({ children }) => {
 					</Menu>
 				</>
 			)}
-		</div>
+		</Box>
 	);
 };
 

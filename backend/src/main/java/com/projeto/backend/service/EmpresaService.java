@@ -6,7 +6,9 @@ import com.projeto.backend.entity.Empresa;
 import java.util.UUID;
 
 public interface EmpresaService {
-    Empresa getEmpresa(UUID uuid);
+    Empresa findById(UUID uuid);
+    Empresa findByCnpj(String cnpj);
+    Empresa findByEmail(String email);
     Empresa save(Empresa empresa);
     void delete(Empresa empresa);
 }

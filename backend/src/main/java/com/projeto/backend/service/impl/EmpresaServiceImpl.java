@@ -15,8 +15,18 @@ public class EmpresaServiceImpl implements EmpresaService {
     EmpresaRepository empresaRepository;
 
     @Override
-    public Empresa getEmpresa(UUID uuid) {
+    public Empresa findById(UUID uuid) {
         return empresaRepository.findById(uuid).orElseThrow();
+    }
+
+    @Override
+    public Empresa findByCnpj(String cnpj) {
+        return empresaRepository.findByCnpj(cnpj);
+    }
+
+    @Override
+    public Empresa findByEmail(String email) {
+        return empresaRepository.findByEmail(email);
     }
 
     @Override

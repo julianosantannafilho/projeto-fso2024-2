@@ -10,10 +10,11 @@ function LoginEmpresa() {
 
 	const router = useRouter();
 	const setEmpresa = useStoreBomba((state) => state.setEmpresa);
+	const setIdEmpresa = useStoreBomba((state) => state.setIdEmpresa);
 	async function queryLogin() {
 		const req = await axios
 			.post(
-				"http://localhost:8080/login",
+				"http://localhost:8080/empresa/login",
 				{
 					email: email.current,
 					senha: senha.current,
@@ -26,6 +27,7 @@ function LoginEmpresa() {
 				if (res) {
 					console.log(res.data);
 				}
+				setIdEmpresa(res.data);
 				setEmpresa(true);
 				router.push("/empresa");
 			})
@@ -42,8 +44,7 @@ function LoginEmpresa() {
 				alignContent: "center",
 
 				alignItems: "center",
-			}}
-			border={1}>
+			}}>
 			<Box
 				sx={{
 					flex: 1,
@@ -71,6 +72,13 @@ function LoginEmpresa() {
 				</Box>
 
 				<Button onClick={queryLogin}>Login</Button>
+				<Button
+					onClick={() => {
+						console.log("askofsdkoh");
+						router.push("/registroempresa");
+					}}>
+					Criar conta empresa
+				</Button>
 			</Box>
 		</Box>
 	);

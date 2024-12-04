@@ -3,37 +3,38 @@ import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { useStoreBomba } from "@/hooks/store";
+import axios from "axios";
 
 const columns: GridColDef<(typeof rows)[number]>[] = [
 	{ field: "id", headerName: "ID", width: 90 },
 	{
-		field: "Nome",
+		field: "nome",
 		headerName: "Nome",
 		width: 150,
 		editable: true,
 	},
 	{
-		field: "Quantidade",
+		field: "quantidade",
 		headerName: "Quantidade",
 		width: 150,
 		editable: true,
 	},
 	{
-		field: "Valor",
+		field: "valor",
 		headerName: "Valor",
 		type: "number",
 		width: 110,
 		editable: true,
 	},
 	{
-		field: "Categoria",
+		field: "tipoProdutoCategoria",
 		headerName: "Categoria",
 		description: "Categoria do produto",
 		sortable: false,
 		width: 160,
 	},
 	{
-		field: "Status",
+		field: "status",
 		headerName: "Status",
 		description: "Status da disponibilidade do produto.",
 		sortable: false,
@@ -71,21 +72,10 @@ const rows = [
 	},
 ];
 
-export default function Produtos() {
+export default function Produtos({ data, fetchProduto }) {
 	const [row, setRow] = React.useState(rows);
 	const [selectedRows, setSelectedRows] = React.useState([]);
 	const idEmpresa = useStoreBomba((state) => state.id);
-
-	async function fetchProduto() {
-		await fetch(`http://localhost:8080/produtos/${idEmpresa}`, {
-			method: "GET",
-		})
-			.catch((e) => console.error(e))
-			.then((res) => {
-				if (res) {
-				}
-			});
-	}
 
 	function handleRowSelection(e) {
 		console.log(e);
@@ -93,16 +83,20 @@ export default function Produtos() {
 	}
 
 	async function deleteRows() {
-		await fetch(`http://localhost:8080/delete/${idEmpresa}`, {
-			method: "POST",
-			body: JSON.stringify({
+		console.log({
+			produtoIds: selectedRows,
+		});
+		console.log(selectedRows);
+		await axios
+			.post(
+				`http://localhost:8080/produto/delete`,
+
 				selectedRows,
-			}),
-		})
+
+				{ withCredentials: true }
+			)
 			.then((res) => {
-				if (res && res.status == 200) {
-					setRow(row.filter((e, i) => e.id === selectedRows[i]));
-				}
+				fetchProduto();
 			})
 			.catch((e) => console.error(e));
 	}
@@ -110,7 +104,7 @@ export default function Produtos() {
 	return (
 		<Box sx={{ height: "80vh", width: "100%" }}>
 			<DataGrid
-				rows={row}
+				rows={data}
 				columns={columns}
 				initialState={{
 					pagination: {

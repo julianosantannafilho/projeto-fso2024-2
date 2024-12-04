@@ -22,7 +22,7 @@ public class UsuarioDto {
     private int cep;
     private String cpf;
     private int cartao_de_credito;
-
+    private boolean isEmpresa;
     private Pedido pedidoList;
 
     private List<Comentario> comentarios;

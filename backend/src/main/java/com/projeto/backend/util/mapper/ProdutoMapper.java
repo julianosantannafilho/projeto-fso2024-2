@@ -11,6 +11,7 @@ public class ProdutoMapper {
                 .notas(produtoDto.getNotas())
                 .nome(produtoDto.getNome())
                 .valor(produtoDto.getValor())
+                .imagem(produtoDto.getImagem())
                 .empresa(produtoDto.getEmpresa())
                 .comentario(produtoDto.getComentario())
                 .status(produtoDto.getStatus())

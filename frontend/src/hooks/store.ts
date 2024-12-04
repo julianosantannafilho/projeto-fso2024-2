@@ -5,6 +5,11 @@ export const useStoreBomba = create((set) => ({
 	username: "",
 	isEmpresa: false,
 	id: "",
+	idEmpresa: "",
+	setIdEmpresa: (idEmpresa) =>
+		set({
+			idEmpresa: idEmpresa,
+		}),
 	setEmpresa: (empresa) =>
 		set({
 			isEmpresa: empresa,

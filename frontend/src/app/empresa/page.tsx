@@ -10,7 +10,9 @@ import React, { useEffect, useRef } from "react";
 function Page() {
 	const empresa = useStoreBomba((state) => state.isEmpresa);
 
-	useEffect(() => {}, [empresa]);
+	useEffect(() => {
+		console.log("empresa effect", empresa);
+	}, [empresa]);
 	console.log("empresa", empresa);
 	return <div>{!empresa ? <LoginEmpresa /> : <CrudEmpresa></CrudEmpresa>}</div>;
 }

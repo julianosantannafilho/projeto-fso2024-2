@@ -1,9 +1,13 @@
 package com.projeto.backend.controller;
 
+import com.projeto.backend.dto.EmpresaDto;
 import com.projeto.backend.dto.UsuarioDto;
+import com.projeto.backend.entity.Empresa;
 import com.projeto.backend.entity.Usuario;
 import com.projeto.backend.exceptions.GenericException;
+import com.projeto.backend.service.EmpresaService;
 import com.projeto.backend.service.UsuarioService;
+import com.projeto.backend.util.mapper.EmpresaMapper;
 import com.projeto.backend.util.mapper.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +22,14 @@ public class UsuarioController {
 
     UsuarioService usuarioService;
     UsuarioMapper usuarioMapper;
-
+    EmpresaService empresaService;
+    EmpresaMapper empresaMapper;
     @Autowired
-    public UsuarioController(UsuarioService usuarioService, UsuarioMapper usuarioMapper){
+    public UsuarioController(UsuarioService usuarioService, UsuarioMapper usuarioMapper, EmpresaService empresaService, EmpresaMapper empresaMapper){
         this.usuarioService = usuarioService;
         this.usuarioMapper= usuarioMapper;
+        this.empresaService = empresaService;
+        this.empresaMapper = empresaMapper;
     }
 
     @PostMapping("/registrar")

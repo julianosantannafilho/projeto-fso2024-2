@@ -15,11 +15,5 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 }
 
 export const config = {
-	matcher: [
-		"/",
-		"/:redirect*",
-		"/empresa",
-		"/empresa/registrar",
-		"/empresa/login",
-	],
+	matcher: ["/", "/:redirect*", "/empresa", "/empresa/login"],
 };

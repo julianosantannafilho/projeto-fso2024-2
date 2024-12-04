@@ -2,7 +2,9 @@ package com.projeto.backend.util.mapper;
 
 import com.projeto.backend.dto.EmpresaDto;
 import com.projeto.backend.entity.Empresa;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmpresaMapper {
     public Empresa empresaDtoToEntity(EmpresaDto empresaDto){
         return Empresa.builder().cep(empresaDto.getCep())
