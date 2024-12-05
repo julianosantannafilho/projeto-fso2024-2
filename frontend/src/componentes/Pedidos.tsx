@@ -28,7 +28,9 @@ const columns: GridColDef<any[number]>[] = [
 
 export default function Pedidos({ data, fetchPedido }) {
 	console.log("data pedidos", data);
-
+	React.useEffect(() => {
+		fetchPedido();
+	}, []);
 	return (
 		<Box sx={{ height: "80vh", width: "100%" }}>
 			<DataGrid
