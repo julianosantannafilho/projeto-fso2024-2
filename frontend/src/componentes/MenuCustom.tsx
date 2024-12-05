@@ -31,6 +31,7 @@ const MenuCustom = ({ children }) => {
 	const login = useRef("");
 	const senha = useRef("");
 	const userId = useStoreBomba((state) => state.id);
+	const empresa = useStoreBomba((state) => state.idEmpresa);
 	console.log("userId", userId);
 	useEffect(() => {}, [userId]);
 	const name = useStoreBomba((state) => state.name);
@@ -52,7 +53,7 @@ const MenuCustom = ({ children }) => {
 			</Box>
 			<Box width={"33vw"}></Box>
 			<Box width={"33vw"}></Box>
-			{userId ? (
+			{userId || empresa ? (
 				<></>
 			) : (
 				<>

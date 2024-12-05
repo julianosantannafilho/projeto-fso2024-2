@@ -38,7 +38,6 @@ function LoginEmpresa() {
 			sx={{
 				display: "flex",
 				height: "90vh",
-				backgroundColor: "green",
 				justifyItems: "center",
 				alignContent: "center",
 				justifyContent: "center",
@@ -53,7 +52,6 @@ function LoginEmpresa() {
 					height: "fit-content",
 					alignContent: "center",
 					alignItems: "center",
-					backgroundColor: "yellow",
 				}}>
 				<Box>
 					<InputLabel>Email</InputLabel>

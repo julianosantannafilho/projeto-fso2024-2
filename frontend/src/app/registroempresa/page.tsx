@@ -51,7 +51,6 @@ function Page() {
 						sx={{
 							display: "flex",
 							height: "90vh",
-							backgroundColor: "green",
 							justifyItems: "center",
 							alignContent: "center",
 							justifyContent: "center",
@@ -64,7 +63,6 @@ function Page() {
 								padding: 4,
 								alignContent: "center",
 								alignItems: "center",
-								backgroundColor: "yellow",
 							}}>
 							<Box>
 								<InputLabel>Nome</InputLabel>

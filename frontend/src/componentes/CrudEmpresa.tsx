@@ -54,7 +54,7 @@ export default function CrudEmpresa() {
 				setData(res.data);
 			});
 	}
-	async function fetchProduto() {
+	async function fetchPedido() {
 		await axios
 			.get(`http://localhost:8080/pedido`, {
 				withCredentials: true,
@@ -69,7 +69,7 @@ export default function CrudEmpresa() {
 	}
 	React.useEffect(() => {
 		fetchRowData();
-		fetchProduto();
+		fetchPedido();
 	}, [openModal, empresaId]);
 	return (
 		<Box sx={{ width: "100%" }}>
@@ -87,7 +87,7 @@ export default function CrudEmpresa() {
 				<Produtos data={data} fetchProduto={fetchRowData} />
 			</CustomTabPanel>
 			<CustomTabPanel value={value} index={1}>
-				<Pedidos data={pedido} />
+				<Pedidos data={pedido} fetchPedido={fetchPedido} />
 			</CustomTabPanel>
 		</Box>
 	);
