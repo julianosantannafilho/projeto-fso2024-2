@@ -59,4 +59,14 @@ public class ProdutoController {
         produtoService.deleteAllById(list);
     }
 
+    @GetMapping("/{categoria}/getAll")
+    public List<Produto> getProdutoByCategoria(@PathVariable String categoria){
+        return produtoService.getTipoProdutoCategoria(categoria);
+    }
+
+    @GetMapping("/{nome}/search")
+    public List<Produto> getProdutoByNome(@PathVariable String nome){
+        return produtoService.getByNome(nome);
+    }
+
 }

@@ -10,6 +10,8 @@ import java.util.UUID;
 public interface ProdutoService {
 
     Produto getProduto(UUID uuid);
+    List<Produto> getTipoProdutoCategoria(String tipoProdutoCategoria);
+    List<Produto> getByNome(String nome);
     List<Produto> findAll();
     void deleteAllById(List<UUID> id);
     List<Produto> findAllByEmpresa(String UUID);

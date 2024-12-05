@@ -27,8 +27,6 @@ public class Usuario {
     private int cep;
     private int cartao_de_credito;
 
-    @ManyToOne
-    private Pedido pedidoList;
 
     @OneToMany
     @JoinColumn(name = "comentarios")

@@ -24,7 +24,6 @@ public class Empresa {
     private int cep;
 
     @OneToMany
-    @JoinColumn(name ="pedidos")
     private List<Pedido> pedido;
 
     @OneToMany

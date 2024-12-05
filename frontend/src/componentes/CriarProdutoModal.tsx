@@ -43,7 +43,7 @@ function CriarProdutoModal({ open, setOpen }) {
 
 	async function handleCreateProduto() {
 		await axios
-			.get(`http://localhost:8080/empresa/${idEmpresa.id}/get`, {
+			.get(`http://localhost:8080/empresa/${idEmpresa}/get`, {
 				withCredentials: true,
 			})
 			.then((res) => {

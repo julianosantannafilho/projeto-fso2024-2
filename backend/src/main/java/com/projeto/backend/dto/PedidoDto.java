@@ -17,10 +17,10 @@ import java.util.UUID;
 public class PedidoDto {
     private UUID id;
     private OffsetDateTime date;
-    private long statusPedido;
+    private String statusPedido;
 
     private Empresa empresa;
-    private Usuario usuario;
+    private String usuario;
 
     private List<ItemPedido> itemPedidos;
 }

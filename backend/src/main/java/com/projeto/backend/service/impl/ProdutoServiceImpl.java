@@ -26,6 +26,16 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
+    public List<Produto> getTipoProdutoCategoria(String tipoProdutoCategoria) {
+        return produtoRepository.findAllByTipoProdutoCategoria(tipoProdutoCategoria);
+    }
+
+    @Override
+    public List<Produto> getByNome(String nome) {
+        return produtoRepository.findAllByNome(nome);
+    }
+
+    @Override
     public List<Produto> findAll() {
         return produtoRepository.findAll();
     }

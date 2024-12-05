@@ -39,6 +39,7 @@ function a11yProps(index: number) {
 export default function CrudEmpresa() {
 	const [value, setValue] = React.useState(0);
 	const [data, setData] = React.useState();
+	const [pedido, setPedido] = React.useState();
 	const [openModal, setOpenModal] = React.useState(false);
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);
@@ -53,9 +54,23 @@ export default function CrudEmpresa() {
 				setData(res.data);
 			});
 	}
+	async function fetchProduto() {
+		await axios
+			.get(`http://localhost:8080/pedido`, {
+				withCredentials: true,
+			})
+			.then((res) => {
+				if (res) {
+					console.log("res data pedido", res.data);
+					setPedido(res.data);
+				}
+			})
+			.catch((e) => console.error(e));
+	}
 	React.useEffect(() => {
 		fetchRowData();
-	}, [openModal]);
+		fetchProduto();
+	}, [openModal, empresaId]);
 	return (
 		<Box sx={{ width: "100%" }}>
 			<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -72,7 +87,7 @@ export default function CrudEmpresa() {
 				<Produtos data={data} fetchProduto={fetchRowData} />
 			</CustomTabPanel>
 			<CustomTabPanel value={value} index={1}>
-				<Pedidos />
+				<Pedidos data={pedido} />
 			</CustomTabPanel>
 		</Box>
 	);

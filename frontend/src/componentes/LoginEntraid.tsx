@@ -23,7 +23,13 @@ const MainContent = () => {
 	 * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-react/docs/hooks.md
 	 */
 	const { instance } = useMsal();
-	const activeAccount = instance.getActiveAccount();
+	const id = useStoreBomba((state) => state.setId);
+	let activeAccount = instance.getActiveAccount();
+	useEffect(() => {
+		activeAccount = instance.getActiveAccount();
+		console.log("activeAccount", activeAccount);
+		id(activeAccount?.username);
+	}, [instance]);
 	// const {data, error, execute, isLoading} = useFetchWithMsal();
 
 	const updateName = useStoreBomba((state) => state.setName);
@@ -47,9 +53,7 @@ const MainContent = () => {
 	return (
 		<div className="App">
 			<AuthenticatedTemplate>
-				{activeAccount ? (
-					<Box>autenticado {activeAccount.homeAccountId}</Box>
-				) : null}
+				<Box>autenticado {activeAccount?.username}</Box>
 			</AuthenticatedTemplate>
 			<UnauthenticatedTemplate>
 				<Button

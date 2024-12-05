@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import MiniLogin from "./MiniLogin";
 import {
@@ -15,6 +15,7 @@ import { Input } from "postcss";
 import { useStore } from "zustand";
 import Perfil from "./Perfil";
 import { useStoreBomba } from "@/hooks/store";
+import { useMsal } from "@azure/msal-react";
 
 const MenuCustom = ({ children }) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -25,9 +26,13 @@ const MenuCustom = ({ children }) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+
+	const { instance } = useMsal();
 	const login = useRef("");
 	const senha = useRef("");
-
+	const userId = useStoreBomba((state) => state.id);
+	console.log("userId", userId);
+	useEffect(() => {}, [userId]);
 	const name = useStoreBomba((state) => state.name);
 	const username = useStoreBomba((state) => state.username);
 
@@ -47,8 +52,8 @@ const MenuCustom = ({ children }) => {
 			</Box>
 			<Box width={"33vw"}></Box>
 			<Box width={"33vw"}></Box>
-			{name && username ? (
-				<Perfil />
+			{userId ? (
+				<></>
 			) : (
 				<>
 					<Button

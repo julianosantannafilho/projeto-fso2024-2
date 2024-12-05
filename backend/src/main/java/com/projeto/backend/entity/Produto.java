@@ -13,7 +13,6 @@ import java.util.UUID;
 @Setter
 @Entity
 @Builder
-
 public class Produto {
 
     @Id

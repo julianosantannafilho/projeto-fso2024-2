@@ -1,4 +1,3 @@
-import BasicCard from "@/componentes/Card";
 import { useStoreBomba } from "@/hooks/store";
 import {
 	Box,
@@ -30,7 +29,7 @@ const responsive = {
 		items: 1,
 	},
 };
-const Content = ({ categoria }) => {
+const Content = ({ categoria, query }) => {
 	const [data, setData] = useState([]);
 	const userId = useStoreBomba((state) => state.id);
 
@@ -41,7 +40,7 @@ const Content = ({ categoria }) => {
 	async function getData() {
 		// FAZER GET ALL POR CATEGORIA
 		await axios
-			.get(`http://localhost:8080/produto/getAll`, {
+			.get(`http://localhost:8080/produto/${categoria}/getAll`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -68,21 +67,30 @@ const Content = ({ categoria }) => {
 					? data.map((e, i) => {
 							console.log("asdasdasdasd: ", e);
 							return (
-								<Card key={e.id} sx={{ width: "fit-content" }}>
-									<CardContent>
-										<Typography
-											gutterBottom
-											sx={{ color: "text.secondary", fontSize: 14 }}>
-											{e.name}
-										</Typography>
-										<img src={e.imagem} alt={e.name} width={200} height={200} />
-										<Typography variant="body2">{e.descricao}</Typography>
-										<Typography variant="body2">R${e.valor},99</Typography>
-									</CardContent>
-									<CardActions>
-										<Button size="small">Comprar</Button>
-									</CardActions>
-								</Card>
+								<Box key={i}>
+									<Card key={e.id}>
+										<CardContent>
+											<Typography
+												gutterBottom
+												sx={{ color: "text.secondary", fontSize: 14 }}>
+												{e.nome}
+											</Typography>
+											<img
+												src={e.imagem}
+												alt={e.name}
+												width={100}
+												height={100}
+											/>
+											<Typography variant="body2">{e.descricao}</Typography>
+											<Typography variant="body2">R${e.valor},99</Typography>
+										</CardContent>
+										<CardActions>
+											<Button onClick={() => query(e)} size="small">
+												Comprar
+											</Button>
+										</CardActions>
+									</Card>
+								</Box>
 							);
 					  })
 					: null}

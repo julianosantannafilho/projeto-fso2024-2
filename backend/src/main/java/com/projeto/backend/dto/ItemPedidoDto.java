@@ -13,7 +13,7 @@ import java.util.UUID;
 public class ItemPedidoDto {
 
     private UUID id;
-    private Produto produto;
+    private String produto;
     private long quantidade;
     private String valor;
 }

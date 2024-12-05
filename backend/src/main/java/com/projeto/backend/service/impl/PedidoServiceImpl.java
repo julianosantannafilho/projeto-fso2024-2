@@ -6,6 +6,7 @@ import com.projeto.backend.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -17,6 +18,11 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Pedido getPedidos(UUID uuid) {
         return pedidoRepository.findById(uuid).orElseThrow();
+    }
+
+    @Override
+    public List<Pedido> getAllPedidos() {
+        return pedidoRepository.findAll();
     }
 
     @Override

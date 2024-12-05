@@ -36,18 +36,18 @@ function LoginEmpresa() {
 	return (
 		<Box
 			sx={{
-				flex: 1,
-				width: "100vw",
-				height: "100vh",
+				display: "flex",
+				height: "90vh",
 				backgroundColor: "green",
 				justifyItems: "center",
 				alignContent: "center",
-
+				justifyContent: "center",
 				alignItems: "center",
 			}}>
 			<Box
 				sx={{
-					flex: 1,
+					display: "flex",
+					flexDirection: "column",
 					padding: 4,
 					width: "fit-content",
 					height: "fit-content",

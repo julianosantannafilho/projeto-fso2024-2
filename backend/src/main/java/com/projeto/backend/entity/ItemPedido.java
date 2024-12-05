@@ -11,7 +11,6 @@ import java.util.UUID;
 @Setter
 @Entity
 @Builder
-
 public class ItemPedido {
 
     @Id
@@ -19,7 +18,9 @@ public class ItemPedido {
     private UUID id = UUID.randomUUID();
 
     @ManyToOne
-    private Produto produto;
+    @JoinColumn
+    private Pedido pedido;
+    private String produto;
     private long quantidade;
     private String valor;
 

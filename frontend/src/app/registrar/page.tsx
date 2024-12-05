@@ -49,25 +49,22 @@ function Page() {
 	return (
 		<Box
 			sx={{
-				flex: 1,
-				width: "100vw",
-				height: "100vh",
-				backgroundColor: "green",
+				display: "flex",
+				height: "90vh",
+
 				justifyItems: "center",
 				alignContent: "center",
-
+				justifyContent: "center",
 				alignItems: "center",
 			}}
 			border={1}>
 			<Box
 				sx={{
-					flex: 1,
+					display: "flex",
+					flexDirection: "column",
 					padding: 4,
-					width: "fit-content",
-					height: "fit-content",
 					alignContent: "center",
 					alignItems: "center",
-					backgroundColor: "yellow",
 				}}>
 				<Box>
 					<InputLabel>Nome</InputLabel>

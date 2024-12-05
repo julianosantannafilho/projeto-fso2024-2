@@ -13,22 +13,18 @@ import java.util.UUID;
 @Setter
 @Entity
 @Builder
-
 public class Pedido {
     @Id
     @Builder.Default
     private UUID id = UUID.randomUUID();
     private OffsetDateTime date;
-    private long statusPedido;
+    private String statusPedido;
 
     @ManyToOne
     private Empresa empresa;
-
-    @ManyToOne
-    private Usuario usuario;
+    private String usuario;
 
     @OneToMany
-    @JoinColumn(name = "pedido_id")
     private List<ItemPedido> itemPedidos;
 
 }

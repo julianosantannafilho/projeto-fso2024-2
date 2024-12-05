@@ -15,7 +15,6 @@ public class UsuarioMapper {
                 .comentarios(usuarioDto.getComentarios())
                 .senha(usuarioDto.getSenha())
                 .data_nascimento(usuarioDto.getData_nascimento())
-                .pedidoList(usuarioDto.getPedidoList())
                 .build();
     }
 }

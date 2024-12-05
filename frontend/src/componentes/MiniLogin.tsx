@@ -1,4 +1,5 @@
 "use client";
+import { useStoreBomba } from "@/hooks/store";
 import { Box, Button, Input, InputLabel } from "@mui/material";
 import axios from "axios";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import React, { useRef } from "react";
 function MiniLogin({ setOpen }) {
 	const email = useRef("");
 	const senha = useRef("");
-
+	const id = useStoreBomba((state) => state.setId);
 	async function queryLogin() {
 		const req = await axios
 			.post(
@@ -22,6 +23,7 @@ function MiniLogin({ setOpen }) {
 			.then((res) => {
 				if (res) {
 					console.log(res.data);
+					id(res.data.id);
 					setOpen();
 				}
 			});
